@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "rule-of-3",
+    "slug": "rule-of-3",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.btanabe.ruleof3"
+    },
+    "ios": {
+      "bundleIdentifier": "com.btanabe.ruleof3"
+    }
+  }
+}
