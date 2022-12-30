@@ -7,17 +7,17 @@
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-        "image": "./assets/images/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
       "adaptiveIcon": {
-          "foregroundImage": "./assets/images/logo.png",
-          "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/images/logo.png",
+        "backgroundColor": "#FFFFFF"
       },
       "package": "com.crabdoctors.ruleof3"
     },
@@ -25,6 +25,11 @@
       "bundleIdentifier": "com.crabdoctors.ruleof3",
       "buildNumber": "1.0.4"
     },
-    "owner": "crab-doctors"
+    "owner": "crab-doctors",
+    "extra": {
+      "eas": {
+        "projectId": "b414bcbb-a3d4-447c-bcae-468d88e4aa62"
+      }
+    }
   }
 }
