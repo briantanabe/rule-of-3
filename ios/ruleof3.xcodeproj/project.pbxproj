@@ -314,7 +314,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.ruleof3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crabdoctors.ruleof3;
 				PRODUCT_NAME = ruleof3;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -338,7 +338,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.ruleof3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crabdoctors.ruleof3;
 				PRODUCT_NAME = ruleof3;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
