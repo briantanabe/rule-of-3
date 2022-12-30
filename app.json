@@ -3,14 +3,27 @@
     "name": "ruleof3",
     "slug": "ruleof3",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
+      "adaptiveIcon": {
+          "foregroundImage": "./assets/images/logo.png",
+          "backgroundColor": "#FFFFFF"
+      },
       "package": "com.crabdoctors.ruleof3"
     },
     "ios": {
-      "bundleIdentifier": "com.crabdoctors.ruleof3"
+      "bundleIdentifier": "com.crabdoctors.ruleof3",
+      "buildNumber": "1.0.4"
     },
     "owner": "crab-doctors"
   }
