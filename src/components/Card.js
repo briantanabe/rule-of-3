@@ -308,7 +308,7 @@ export default Card = (props) => {
             >
               <ProgressBar bgColor={"white"} />
               <ProgressBar
-                bgColor={wrongAnimationOpacity == 1 ? "red" : "#0005"}
+                bgColor={wrongAnimationOpacity == 1 ? "red" : "white"}
               />
             </Animated.View>
           </MaskedView>
