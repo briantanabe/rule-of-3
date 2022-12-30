@@ -28,6 +28,7 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default Practice = () => {
+  const dispatch = useDispatch();
   const time_left = useSelector((state) => state.streak.time_left);
   const playing = useSelector((state) => state.streak.playing);
   const turn_over = useSelector((state) => state.streak.turn_over);
@@ -65,6 +66,7 @@ export default Practice = () => {
 
   React.useEffect(() => {
     if (cardToDelete) {
+      dispatch(set_playing(false));
       deleteCard(cardToDelete);
       setCardToDelete(null);
     }
@@ -118,7 +120,7 @@ export default Practice = () => {
                 key={`${item}`}
                 id={item}
                 index={index}
-                time={5}
+                time={6}
                 deletionCallback={setCardToDelete}
                 // lossCallback={lossCallback}
                 noun={deck[Math.floor(item * deck.length)].n}

@@ -47,15 +47,15 @@ export default Controller = (props) => {
   };
 
   const countDown = async () => {
-    await delay(1000);
-    if (time_left > 0 && playingRef.current) {
-      if (time_left == 1) {
-        dispatch(set_turn_over(false));
-        dispatch(set_turn_over(true));
-        dispatch(set_playing(false));
-      }
-      dispatch(set_time_left(time_left - 1));
-    }
+    // await delay(1000);
+    // if (time_left > 0 && playingRef.current) {
+    //   if (time_left == 1) {
+    //     dispatch(set_turn_over(false));
+    //     dispatch(set_turn_over(true));
+    //     dispatch(set_playing(false));
+    //   }
+    //   dispatch(set_time_left(time_left - 1));
+    // }
   };
 
   useEffect(() => {

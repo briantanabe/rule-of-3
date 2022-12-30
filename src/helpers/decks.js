@@ -71,11 +71,10 @@ const updateDecks = async () => {
     const deckInfo = await getDeckInfo();
     const deckVersion = await readData(STORAGE_KEY_deck_version);
     if (deckVersion == null) {
-      downloadDeck(deckInfo);
+      await downloadDeck(deckInfo);
     } else {
       if (deckInfo.version > deckVersion) {
-        downloadDeck(deckInfo);
-      } else {
+        await downloadDeck(deckInfo);
       }
     }
   } catch (e) {

@@ -223,11 +223,8 @@ export default Card = (props) => {
 
   const triggerDeleteAnimation = (autoDelete = false) => {
     setExpired(false);
-    if (!turn_over) {
-      dispatch(increment_current());
-    }
-    const x = autoDelete ? 280 : pan.x._value;
-    const y = autoDelete ? 230 : pan.y._value;
+    const x = Number(autoDelete ? 280 : pan.x._value);
+    const y = Number(autoDelete ? 230 : pan.y._value);
     Animated.timing(pan, {
       toValue: {
         x: (x * 1.6) / swipeThresh,
@@ -237,6 +234,9 @@ export default Card = (props) => {
       duration: autoDelete ? 300 : 150,
       useNativeDriver: false,
     }).start(() => {
+      if (!turn_over) {
+        dispatch(increment_current());
+      }
       props.deletionCallback(props.id);
     });
   };

@@ -1,46 +1,22 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { store } from "./src/redux/store";
+import { Provider } from "react-redux";
+
+import { createMyNavigator } from "./src/navigators/home";
+
+const My = createMyNavigator();
+
+import Practice from "./src/screens/Practice";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        <Text>unguuuddduu</Text>
-        <StatusBar style="auto" />
-      </View>
-      <View style={styles.bottomModal}>
-        <Text style={styles.bottomModalText}>Solo</Text>
-      </View>
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <My.Navigator>
+          <My.Screen name="Home" component={Practice} />
+        </My.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  bottomModalText: {
-    fontSize: 25,
-    marginLeft: "5%",
-    fontWeight: "bold",
-  },
-  bottomModal: {
-    backgroundColor: "white",
-    width: "95%",
-    height: "10%",
-    marginBottom: "3%",
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOpacity: 0.5,
-    shadowRadius: 40,
-    shadowOffset: {
-      height: 20,
-    },
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
-});

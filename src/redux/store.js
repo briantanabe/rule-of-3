@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import streakReducer from "../features/counter/streak";
+import streakReducer from "./reducers/streak";
 
 export const store = configureStore({
   reducer: {
