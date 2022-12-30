@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "rule-of-3",
-    "slug": "rule-of-3",
+    "name": "ruleof3",
+    "slug": "ruleof3",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
-      "package": "com.btanabe.ruleof3"
+      "package": "com.crabdoctors.ruleof3"
     },
     "ios": {
-      "bundleIdentifier": "com.btanabe.ruleof3"
+      "bundleIdentifier": "com.crabdoctors.ruleof3"
     },
     "owner": "crab-doctors"
   }
