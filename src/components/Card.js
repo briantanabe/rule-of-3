@@ -298,8 +298,12 @@ export default Card = (props) => {
                 transform: [
                   {
                     translateX: percentageRemaining.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [-ticBoundary_px, 0],
+                      inputRange: [0, 0.5, 1],
+                      outputRange: [
+                        -ticBoundary_px / 2,
+                        -ticBoundary_px / 2,
+                        0,
+                      ],
                     }),
                   },
                 ],
@@ -307,9 +311,69 @@ export default Card = (props) => {
               }}
             >
               <ProgressBar bgColor={"white"} />
-              <ProgressBar
-                bgColor={wrongAnimationOpacity == 1 ? "red" : "white"}
-              />
+              <Animated.View
+                style={{
+                  transform: [
+                    {
+                      scaleX: percentageRemaining.interpolate({
+                        inputRange: [0, 0.5, 1],
+                        outputRange: [ticBoundary_px * 0.5, 1, 1],
+                      }),
+                    },
+                    {
+                      translateX: percentageRemaining.interpolate({
+                        inputRange: [0, 0.25, 1, 1],
+                        outputRange: [-0.5, -0.495, 0, 0],
+                      }),
+                    },
+                  ],
+                  opacity: percentageRemaining.interpolate({
+                    inputRange: [0, 0.5, 0.501, 1],
+                    outputRange: [1, 0.99, 0, 0],
+                  }),
+                  flexDirection: "row",
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "red",
+                    width: 1,
+                    height: ticHeight_px,
+                  }}
+                />
+              </Animated.View>
+              <Animated.View
+                style={{
+                  transform: [
+                    {
+                      scaleX: percentageRemaining.interpolate({
+                        inputRange: [0, 0.5, 1],
+                        outputRange: [1, 1, ticBoundary_px * 0.5],
+                      }),
+                    },
+                    {
+                      translateX: percentageRemaining.interpolate({
+                        inputRange: [0, 0, 0.5, 1],
+                        outputRange: [0, 0, -0.42, -0.5],
+                      }),
+                    },
+                  ],
+                  opacity: percentageRemaining.interpolate({
+                    inputRange: [0, 0.5, 0.501, 1],
+                    outputRange: [0, 0, 0.99, 1],
+                  }),
+                  flexDirection: "row",
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "green",
+                    width: 1,
+                    height: ticHeight_px,
+                  }}
+                />
+              </Animated.View>
+              <ProgressBar bgColor={"#0005"} />
             </Animated.View>
           </MaskedView>
           {/* <View /> */}

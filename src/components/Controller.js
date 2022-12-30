@@ -82,69 +82,95 @@ export default Controller = (props) => {
             }}
           >
             <Button
-              onPress={() => dispatch(set_time_left(time_left + 15))}
-              // onLongPress={() => {
-              //   if (playingRef.current) {
-              //     dispatch(pause());
-              //   } else {
-              //     dispatch(play());
-              //   }
-              // }}
+              onPress={() => {
+                dispatch(set_time_left(20));
+                dispatch(set_playing(false));
+              }}
             >
-              <View>
+              <View
+                style={{
+                  // top: screenWidth * 0.02,
+                  height: controllerHeight_px,
+                  width: screenWidth * 0.22,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  // backgroundColor: "blue",
+                }}
+              >
                 <Text black title center color={"black"}>
                   {`${Math.floor(time_left / 60)}:${(
                     "0" +
                     (time_left - Math.floor(time_left / 60) * 60)
                   ).slice(-2)}`}
                 </Text>
-                <View style={{ marginTop: screenWidth * -0.02 }}>
-                  <Text black medium center color={"black"}>
-                    {"Countdown"}
-                  </Text>
-                </View>
               </View>
-            </Button>
-            <Button onLongPress={() => dispatch(set_best(0))}>
-              <View>
-                <Text black title center color={"black"}>
-                  {best_streak}
-                </Text>
-                <View style={{ marginTop: screenWidth * -0.02 }}>
-                  <Text black medium center color={"black"}>
-                    {"Best"}
-                  </Text>
-                </View>
-              </View>
-            </Button>
-            <View>
-              <Text black title center color={"black"}>
-                {current_streak}
-              </Text>
-              <View style={{ marginTop: screenWidth * -0.02 }}>
+              <View style={{ top: screenWidth * -0.055 }}>
                 <Text black medium center color={"black"}>
-                  Current
+                  Time
                 </Text>
               </View>
-            </View>
-            <Button
-              onPress={() => {
-                if (time_left == 0) {
-                  dispatch(set_time_left(75));
-                }
-                dispatch(set_playing(!playing));
-              }}
-            >
+            </Button>
+            <Button onPress={() => {}}>
               <View
                 style={{
-                  padding: screenWidth * 0.025,
+                  // top: screenWidth * 0.02,
+                  height: screenWidth * 0.18,
+                  width: screenWidth * 0.18,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  // backgroundColor: "blue",w
+                }}
+              >
+                <Text black title center color={"black"}>
+                  {current_streak}
+                </Text>
+              </View>
+              <View style={{ top: screenWidth * -0.04 }}>
+                <Text black medium center color={"black"}>
+                  Streak
+                </Text>
+              </View>
+            </Button>
+            <Button onPress={() => {}}>
+              <View
+                style={{
+                  height: screenWidth * 0.18,
+                  width: screenWidth * 0.18,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FontAwesome5
+                  name={"angle-double-right"}
+                  size={screenWidth * 0.09}
+                  color="black"
+                />
+              </View>
+              <View style={{ top: screenWidth * -0.04 }}>
+                <Text black medium center color={"black"}>
+                  Skip
+                </Text>
+              </View>
+            </Button>
+            <Button onPress={() => {}}>
+              <View
+                style={{
+                  height: screenWidth * 0.18,
+                  width: screenWidth * 0.18,
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <FontAwesome5
                   name={playing ? "pause" : "play"}
-                  size={24}
+                  size={screenWidth * 0.06}
                   color="black"
                 />
+              </View>
+              <View style={{ top: screenWidth * -0.04 }}>
+                <Text black medium center color={"black"}>
+                  Start
+                </Text>
               </View>
             </Button>
           </View>

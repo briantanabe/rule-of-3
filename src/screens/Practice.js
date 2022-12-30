@@ -24,6 +24,7 @@ import {
   set_turn_over,
 } from "../redux/reducers/streak";
 
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
@@ -189,6 +190,23 @@ export default Practice = () => {
           </View>
         </View>
       )}
+      <Button>
+        <View
+          style={{
+            position: "absolute",
+            margin: 20,
+            padding: 20,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <FontAwesome5
+            name={"magic"}
+            size={screenWidth * 0.09}
+            color="black"
+          />
+        </View>
+      </Button>
     </Container>
   );
 };
