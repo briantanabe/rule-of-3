@@ -74,4 +74,4 @@ def replace_version(ov, ovs, cv, csv, fte):
 replace_version(old_version, old_version_string, current_version, current_version_string, "android/app/build.gradle")
 
 # Edit iOS Info.Plist
-replace_version(old_version, old_version_string, current_version, current_version_string, "ios/Foldscope/Info.plist")
+replace_version(old_version, old_version_string, current_version, current_version_string, "ios/ruleof3/Info.plist")

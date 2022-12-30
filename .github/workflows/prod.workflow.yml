@@ -1,0 +1,41 @@
+name: Production Build
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Install and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: npm
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: 5.x
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      # - name: Add App Store secrets
+      #   run: echo ${{ secrets.GOOGLE_SERVICES_B64 }} | base64 --decode > google-services-play.json
+      # - name: Add Analytics secrets
+      #   run: echo ${{ secrets.GOOGLE_SERVICES_ANALTYICS_B64 }} | base64 --decode > google-services-analytics.json
+      # - name: Add Analytics secrets again
+      #   run: echo ${{ secrets.GOOGLE_SERVICES_ANALTYICS_B64 }} | base64 --decode > android/app/google-services.json
+      - name: Install dependencies
+        run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
+        # run: eas update --branch release --message "Updating the app"
+      # - name: Publish to release channel
+      - name: Build on EAS
+        run: eas build --platform all --profile release --non-interactive --no-wait --auto-submit
