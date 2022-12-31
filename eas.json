@@ -18,6 +18,16 @@
     "release": {}
   },
   "submit": {
-    "release": {}
+    "release": {
+      "android": {
+        "serviceAccountKeyPath": "./play_store_key.json",
+        "track": "internal"
+      },
+      "ios": {
+        "appleId": "btanabe18@gmail.com",
+        "ascAppId": "1662041977",
+        "appleTeamId": "92268MU9CW"
+      }
+    }
   }
 }
