@@ -22,7 +22,8 @@
       "package": "com.crabdoctors.ruleof3"
     },
     "ios": {
-      "buildNumber": "1.0.4"
+      "buildNumber": "1.0.4",
+      "bundleIdentifier": "com.crabdoctors.ruleof3"
     },
     "owner": "crab-doctors",
     "extra": {
