@@ -210,3 +210,4 @@ web-build/
 dist/
 
 # @end expo-cli
+play_store_key.json
