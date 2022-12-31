@@ -20,7 +20,7 @@
   "submit": {
     "release": {
       "android": {
-        "serviceAccountKeyPath": "./play_store_key.json",
+        "serviceAccountKeyPath": "./android/app/google-services.json",
         "track": "internal"
       },
       "ios": {
