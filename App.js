@@ -7,14 +7,14 @@ import { createMyNavigator } from "./src/navigators/home";
 
 const My = createMyNavigator();
 
-import Practice from "./src/screens/Practice";
+import Home from "./src/screens/Home";
 
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <My.Navigator>
-          <My.Screen name="Home" component={Practice} />
+          <My.Screen name="Home" component={Home} />
         </My.Navigator>
       </NavigationContainer>
     </Provider>

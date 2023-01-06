@@ -6,8 +6,12 @@ const initialState = {
   playing: false,
   turn_over: true,
   game_over: false,
-  time_left: 75,
+  time_left: 20,
   default_time: 75,
+  stage: 0,
+  players: [],
+  adding_player: false,
+  selected_player: undefined,
 };
 
 export const streakSlice = createSlice({
@@ -35,10 +39,18 @@ export const streakSlice = createSlice({
     set_default_time: (state, action) => {
       state.default_time = action.payload;
     },
-    // set_game_over: (state, action) => {
-    //   state.game_over = action.payload;
-
-    // },
+    set_stage: (state, action) => {
+      state.stage = action.payload;
+    },
+    set_players: (state, action) => {
+      state.players = action.payload;
+    },
+    set_adding_player: (state, action) => {
+      state.adding_player = action.payload;
+    },
+    set_selected_player: (state, action) => {
+      state.selected_player = action.payload;
+    },
   },
 });
 
@@ -51,6 +63,10 @@ export const {
   set_turn_over,
   set_time_left,
   set_default_time,
+  set_stage,
+  set_players,
+  set_adding_player,
+  set_selected_player,
 } = streakSlice.actions;
 
 export default streakSlice.reducer;

@@ -5,6 +5,6 @@
   "minify": false,
   "urlRandomness": null,
   "https": false,
-  "scheme": "com.crabdoctors.ruleof3",
-  "devClient": true
+  "scheme": null,
+  "devClient": false
 }

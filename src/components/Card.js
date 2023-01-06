@@ -112,38 +112,38 @@ export default Card = (props) => {
         dispatch(reset_current());
         dispatch(set_turn_over(false));
       }
-      startCountdown();
-      Animated.sequence([
-        Animated.delay(250),
-        Animated.timing(percentageRemaining, {
-          toValue: 0,
-          duration: props.time * 1000,
-          useNativeDriver: true,
-          easing: Easing.linear,
-        }),
-      ]).start(() => {
-        Animated.sequence([
-          Animated.timing(wrongAnimationOpacity, {
-            toValue: 1,
-            duration: 180,
-            useNativeDriver: false,
-            easing: Easing.linear,
-          }),
-          Animated.delay(300),
-          Animated.timing(wrongAnimationMove, {
-            toValue: 1,
-            duration: 180,
-            useNativeDriver: false,
-            easing: Easing.linear,
-          }),
-          Animated.timing(wrongAnimationTextOpacity, {
-            toValue: 1,
-            duration: 100,
-            useNativeDriver: false,
-            easing: Easing.linear,
-          }),
-        ]).start();
-      });
+      // startCountdown();
+      // Animated.sequence([
+      //   Animated.delay(250),
+      //   Animated.timing(percentageRemaining, {
+      //     toValue: 0,
+      //     duration: props.time * 1000,
+      //     useNativeDriver: true,
+      //     easing: Easing.linear,
+      //   }),
+      // ]).start(() => {
+      //   Animated.sequence([
+      //     Animated.timing(wrongAnimationOpacity, {
+      //       toValue: 1,
+      //       duration: 180,
+      //       useNativeDriver: false,
+      //       easing: Easing.linear,
+      //     }),
+      //     Animated.delay(300),
+      //     Animated.timing(wrongAnimationMove, {
+      //       toValue: 1,
+      //       duration: 180,
+      //       useNativeDriver: false,
+      //       easing: Easing.linear,
+      //     }),
+      //     Animated.timing(wrongAnimationTextOpacity, {
+      //       toValue: 1,
+      //       duration: 100,
+      //       useNativeDriver: false,
+      //       easing: Easing.linear,
+      //     }),
+      //   ]).start();
+      // });
     }
     setProgress(calculateProgress());
     moveTo(calculateProgress());
@@ -274,7 +274,7 @@ export default Card = (props) => {
               {props.rule ? props.rule.toUpperCase() : "error"}
             </RuleText>
           </View>
-          <MaskedView
+          {/* <MaskedView
             style={{
               flexDirection: "row",
               margin: (cardWidth_px - ticBoundary_px) / 2,
@@ -375,7 +375,7 @@ export default Card = (props) => {
               </Animated.View>
               <ProgressBar bgColor={"#0005"} />
             </Animated.View>
-          </MaskedView>
+          </MaskedView> */}
           {/* <View /> */}
           <Animated.View
             style={{
