@@ -23,7 +23,7 @@ import {
   reset_current,
   set_best,
   set_playing,
-  set_turn_over,
+  set_current_card,
 } from "../redux/reducers/streak";
 
 const possibleColors = [
@@ -59,9 +59,9 @@ const ticBoundary_px = cardWidth_px * 0.8;
 const swipeThresh = 0.5;
 
 export default Card = (props) => {
-  const turn_over = useSelector((state) => state.streak.turn_over);
+  const current_card = useSelector((state) => state.streak.current_card);
   const current_streak = useSelector((state) => state.streak.current_streak);
-  const best_streak = useSelector((state) => state.streak.best_streak);
+  const players = useSelector((state) => state.streak.players);
   const playing = useSelector((state) => state.streak.playing);
   const dispatch = useDispatch();
   const pan = useRef(new Animated.ValueXY()).current;
@@ -76,82 +76,55 @@ export default Card = (props) => {
 
   const [card_visibility, setCard_visibility] = useState(0);
   const [progress, setProgress] = useState(calculateProgress());
-  const [time, setTime] = useState(3);
-  const [expired, setExpired] = useState(true);
   const [shown, setShown] = useState(false);
-  const expiredRef = useRef();
-  expiredRef.current = expired;
+
+  const rule_text = props.deck
+    ? props.deck[props.rule]["card"]
+        .toString()
+        .replace(
+          "[player_name]",
+          players[Math.floor(props.id * players.length)].name
+        )
+    : "ERROR";
 
   const delay = (delayInms) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        3;
         resolve(2);
       }, delayInms);
     });
   };
 
-  const startCountdown = async () => {
-    setShown(true);
-    await delay(250 + props.time * 1000);
-    if (expiredRef.current) {
-      dispatch(set_turn_over(true));
-      if (current_streak > best_streak) {
-        dispatch(set_best(current_streak));
-      }
-    }
-  };
+  // useEffect(() => {
+  //   if (props.index == 0 && !playing && shown) {
+  //     triggerDeleteAnimation(true);
+  //     return;
+  //   }
+  //   if (props.index == 0 && playing) {
+  //     // What does this do this is weird
+  //     if (turn_over) {
+  //       dispatch(reset_current());
+  //       dispatch(set_turn_over(false));
+  //     }
+  //   }
+  //   setProgress(calculateProgress());
+  //   moveTo(calculateProgress());
+  // }, [props.index, playing]);
 
   useEffect(() => {
-    if (props.index == 0 && !playing && shown) {
-      triggerDeleteAnimation(true);
-      return;
-    }
-    if (props.index == 0 && playing) {
-      if (turn_over) {
-        dispatch(reset_current());
-        dispatch(set_turn_over(false));
-      }
-      // startCountdown();
-      // Animated.sequence([
-      //   Animated.delay(250),
-      //   Animated.timing(percentageRemaining, {
-      //     toValue: 0,
-      //     duration: props.time * 1000,
-      //     useNativeDriver: true,
-      //     easing: Easing.linear,
-      //   }),
-      // ]).start(() => {
-      //   Animated.sequence([
-      //     Animated.timing(wrongAnimationOpacity, {
-      //       toValue: 1,
-      //       duration: 180,
-      //       useNativeDriver: false,
-      //       easing: Easing.linear,
-      //     }),
-      //     Animated.delay(300),
-      //     Animated.timing(wrongAnimationMove, {
-      //       toValue: 1,
-      //       duration: 180,
-      //       useNativeDriver: false,
-      //       easing: Easing.linear,
-      //     }),
-      //     Animated.timing(wrongAnimationTextOpacity, {
-      //       toValue: 1,
-      //       duration: 100,
-      //       useNativeDriver: false,
-      //       easing: Easing.linear,
-      //     }),
-      //   ]).start();
-      // });
+    if (props.index == 0) {
+      dispatch(set_current_card(props.id));
+      setShown(true);
     }
     setProgress(calculateProgress());
     moveTo(calculateProgress());
   }, [props.index, playing]);
 
   useEffect(() => {
-    setTime(props.time);
-  }, [props.time]);
+    if (shown && props.id != current_card) {
+      triggerDeleteAnimation(true);
+    }
+  }, [current_card]);
 
   const moveTo = async (p) => {
     Animated.timing(pan, {
@@ -222,7 +195,6 @@ export default Card = (props) => {
   );
 
   const triggerDeleteAnimation = (autoDelete = false) => {
-    setExpired(false);
     const x = Number(autoDelete ? 280 : pan.x._value);
     const y = Number(autoDelete ? 230 : pan.y._value);
     Animated.timing(pan, {
@@ -230,14 +202,11 @@ export default Card = (props) => {
         x: (x * 1.6) / swipeThresh,
         y: ((y - baseline_y) * 1.6) / swipeThresh,
       },
-      easing: progress >= 1 ? Easing.linear : Easing.linear,
+      easing: Easing.linear,
       duration: autoDelete ? 300 : 150,
       useNativeDriver: false,
     }).start(() => {
-      if (!turn_over) {
-        dispatch(increment_current());
-      }
-      props.deletionCallback(props.id);
+      props.deletionCallback([props.rule, props.id]);
     });
   };
 
@@ -266,13 +235,15 @@ export default Card = (props) => {
         distance={cardWidth_px * 0.08}
       >
         <Cardback id={props.id}>
-          <View style={{ alignSelf: "flex-start", alignItems: "flex-start" }}>
-            <RuleText>{`3 ${
-              props.noun ? props.noun.toUpperCase() : "error"
-            } THAT:`}</RuleText>
-            <RuleText>
-              {props.rule ? props.rule.toUpperCase() : "error"}
-            </RuleText>
+          <View
+            style={{
+              alignSelf: "flex-start",
+              alignItems: "flex-start",
+              paddingTop: screenWidth * 0.05,
+            }}
+          >
+            <RuleText>{`NAME THREE:`}</RuleText>
+            <RuleText>{`${rule_text.toUpperCase()}`}</RuleText>
           </View>
           {/* <MaskedView
             style={{
@@ -467,6 +438,8 @@ const RuleText = styled.Text`
   color: white;
   padding: ${screenWidth * 0.01}px;
   margin: ${screenWidth * 0.05}px;
+  margin-bottom: ${screenWidth * 0.003}px;
+  margin-top: 0px;
 `;
 
 const ProgressBar = styled.View`
@@ -477,7 +450,7 @@ const ProgressBar = styled.View`
 
 const ProgressTicMask = styled.View`
   background-color: white;
-  width: ${(props) => (cardWidth_px - cardWidth_px * 0.3) / props.time}px;
+
   height: ${ticHeight_px}px;
   margin-bottom: ${cardWidth_px * 0.18}px;
   border-radius: ${cardWidth_px * 0.01}px;

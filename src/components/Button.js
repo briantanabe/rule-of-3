@@ -23,7 +23,10 @@ export default Button = (props, ref) => {
   return (
     <Pressable
       onPressIn={() => {
-        if (props.active == true || props.active == undefined) {
+        if (
+          (props.active == true || props.active == undefined) &&
+          (props.shrinkOnLong == undefined || props.shrinkOnLong == false)
+        ) {
           setPressedIn(true);
           if (props.onPressIn) {
             props.onPressIn();
@@ -39,7 +42,10 @@ export default Button = (props, ref) => {
         }
       }}
       onPress={() => {
-        if (props.active == true || props.active == undefined) {
+        if (
+          (props.active == true || props.active == undefined) &&
+          (props.shrinkOnLong == undefined || props.shrinkOnLong == false)
+        ) {
           if (props.onPress) {
             props.onPress();
           }
@@ -50,7 +56,16 @@ export default Button = (props, ref) => {
           if (props.onLongPress) {
             props.onLongPress();
           }
+          if (props.shrinkOnLong != undefined && props.shrinkOnLong == true) {
+            setPressedIn(true);
+          }
         }
+      }}
+      shrink={() => {
+        setPressedIn(true);
+      }}
+      grow={() => {
+        setPressedIn(false);
       }}
     >
       <View style={{ transform: [{ scale: pressedIn ? 0.97 : 1 }] }}>

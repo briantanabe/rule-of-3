@@ -1,8 +1,10 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import "firebase/compat/storage";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
+// import { getStorage } from "firebase/storage";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -17,6 +19,7 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
+  // const storage = getStorage(app);
 }
 
 export default firebase;
